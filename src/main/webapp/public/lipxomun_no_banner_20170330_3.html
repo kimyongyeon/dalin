@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+	<title>LipXoMun</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<style>
+		@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+		* { font-family: 'Nanum Gothic', sans-serif; padding: 0; margin: 0; color: #444; }
+		a, a:active, a:hover, a:link, a:visited { text-decoration: none; color: #444; }
+		ul { list-style: none; }
+
+		html, body { width: 100%; height: 100%; padding: 0; margin: 0; }
+
+		header, section { width: 100%; }
+
+		header {
+			position: fixed;
+			height: 50px;
+			padding: 0 10px;
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			font-size: 3rem;
+		}
+
+		header > a {
+			height: 60px;
+		}
+
+		header > a > img {
+			position: relative;
+			top: 7px;
+			height: 100%;
+		}
+
+		header > div {
+			width: 140px;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		section {
+			position: fixed;
+			top: 50px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-content: flex-start;
+			height: calc(100% - 50px);
+			padding: 0 10px 10px 10px;
+			overflow: auto;
+		}
+
+		section > article {
+			border-radius: 5px;
+			box-shadow: 1px 1px 1px 1px silver;
+			margin: 10px;
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			height: 240px;
+		}
+
+		section > article:hover {
+			box-shadow: 2px 2px 2px 2px silver;
+		}
+		
+		section > article > :first-child {
+			width: 100%;
+			background: rgba(0,0,0,0.5);
+			padding: 5px;
+			display: flex;
+			justify-content: space-between;
+			flex-direction: row;
+			align-items: center;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+
+		section > article > :first-child * {
+			color: white;
+			font-size: 1.5rem;
+		}
+
+		section > article > :last-child {
+			width: 100%;
+			background: rgba(0,0,0,0.5);
+			color: white;
+			font-size: 1.5rem;
+			padding: 5px;
+			display: flex;
+			align-items: center;
+			position: absolute;
+			bottom: 0;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+
+		section > article:last-of-type {
+			margin-bottom: 60px;
+		}
+
+		footer {
+			/*
+			   display: none;
+			*/
+			position: fixed;
+			left: 20px;
+			bottom: 10px;
+			width: calc(100% - 40px);
+		}
+
+		footer > a {
+			color: white !important;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<a href="#"><img src="./lips.png"/></a>
+		<div>
+			<a href="#"><i class="fa fa-search"></i></a>
+			<a href="#"><i class="fa fa-heart"></i></a>
+			<a href="#"><i class="fa fa-calendar"></i></a>
+			<a href="#"><i class="fa fa-user"></i></a>
+		</div>
+	</header>
+	<section>
+		<footer><a href="#" class="btn btn-lg btn-block">더 보기</a></footer>
+	</section>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="RW.min.js"></script>
+	<script>
+
+		$(function(){
+			var datas = [
+				{image: "image/room1.jpg", icon: "building-o", count: "1,234", heart: true, text: "텐프로 행사합니다."}
+				, {image: "image/girl1.jpg", icon: "venus", count: "1,234K", heart: true, text: "향숙이 보러와. ^^"}
+				, {image: "image/room2.jpg", icon: "building-o", count: "1,234", heart: true, text: "KING으로 모십니다."}
+				, {image: "image/girl2.jpg", icon: "venus", count: "1,234K", heart: true, text: "오빠 사랑해~"}
+				, {image: "image/after1.jpg", icon: "pencil", count: "100M", heart: false, text: "후기 꼭 보세요."}
+				, {image: "image/man1.jpg", icon: "mars", count: "10K", heart: true, text: "백마남 있음 ㅋㅋ"}
+				, {image: "image/man2.jpg", icon: "mars", count: "10K", heart: true, text: "동건이는 힘이 좋아!"}
+				, {image: "image/after2.jpg", icon: "pencil", count: "100M", heart: false, text: "텐프로 후기임. 사기 없음!"}
+			];
+
+			for(var i = 0; i < datas.length; i++){
+				var data = datas[i];
+				var image = "background: url(" + data.image + ") no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;";
+
+				$("footer").before("<article style='" + image + "'>"
+					+ "<div>"
+						+ "<i class='fa fa-" + data.icon + "'></i>"
+						+ "<i class='fa fa-thumbs-up'> " + data.count + "</i>"
+						+ "<a href='#'><i class='fa fa-heart-o'></i></a>"
+					+ "</div>"
+					+ "<div>" + data.text + "</div>"
+				+ "</article>");
+			}
+
+			RW.width(180, "section > article");
+			$(window).resize(function(){
+				RW.width(180, "section > article");
+			});
+		});
+	</script>
+</body>
+</html>

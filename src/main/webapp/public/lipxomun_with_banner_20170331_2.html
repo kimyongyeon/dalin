@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+	<title>LipXoMun</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<style>
+		@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+		* { font-family: 'Nanum Gothic', sans-serif; padding: 0; margin: 0; color: #444; }
+		a, a:active, a:hover, a:link, a:visited { text-decoration: none; color: #444; }
+		ul { list-style: none; }
+
+		html, body { width: 100%; height: 100%; padding: 0; margin: 0; }
+
+		header, section { width: 100%; }
+
+		header {
+			position: fixed;
+			height: 50px;
+			padding: 0 10px;
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			font-size: 3rem;
+		}
+
+		header > a {
+			height: 60px;
+		}
+
+		header > a > img {
+			position: relative;
+			top: 7px;
+			height: 100%;
+		}
+
+		header > div {
+			width: 140px;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		section {
+			position: fixed;
+			top: 50px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-content: flex-start;
+			height: calc(100% - 50px);
+			padding: 0 10px 10px 10px;
+			overflow: auto;
+		}
+
+		section > article {
+			border-radius: 5px;
+			box-shadow: 1px 1px 1px 1px silver;
+			margin: 10px;
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			height: 240px;
+		}
+
+		section > article:hover {
+			box-shadow: 2px 2px 2px 2px silver;
+		}
+		
+		section > article > :first-child {
+			width: 100%;
+			background: rgba(0,0,0,0.5);
+			padding: 5px;
+			display: flex;
+			justify-content: space-between;
+			flex-direction: row;
+			align-items: center;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+
+		section > article > :first-child * {
+			color: white;
+			font-size: 1.5rem;
+		}
+
+		section > article > :last-child {
+			width: 100%;
+			background: rgba(0,0,0,0.5);
+			color: white;
+			font-size: 1.5rem;
+			padding: 5px;
+			display: flex;
+			align-items: center;
+			position: absolute;
+			bottom: 0;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+
+		section > article:last-of-type {
+			margin-bottom: 60px;
+		}
+
+		footer {
+			/*
+			   display: none;
+			*/
+			position: fixed;
+			left: 20px;
+			bottom: 10px;
+			width: calc(100% - 40px);
+		}
+
+		footer > a {
+			color: white !important;
+			background: red;
+		}
+
+		#banners { width: 100%; }
+
+		.banner { border-radius: 5px; padding: 5px; margin: 10px auto; }
+		.banner > .store { font-size: 2rem; font-weight: bold; }
+		.banner > .keyword { text-align: center; } 
+		.banner > .call { text-align: right; }
+
+		.highend { width: calc(100% - 20px); background: black; }
+		.highend * { font-size: 2rem; color: white; }
+
+		.mainstream { background: gold; }
+		.mainstream * { color: black; }
+
+		.entry { background: gray; }
+		.entry * { color: white; }
+		.entry :not(.store) { text-align: right; }
+
+		@media all and (max-width: 539px) {
+			.mainstream { width: calc(100% - 20px); }
+			.entry { width: calc(50% - 20px); }
+			.entry.left { float: left; margin-left: 10px; }
+			.entry.right { float: right; margin-right: 10px; }
+		}
+		@media all and (min-width: 540px) and (max-width: 899px) {
+			.highend > .store { font-size: 3rem; }
+			.highend * { font-size: 3rem; }
+
+			#banners { display: flex; }
+			.mainstream { width: calc(50% - 20px); order: 1; }
+			.mainstream> .store { font-size: 2.5rem; }
+			.mainstream> .keyword { font-size: 2rem; }
+			.entry { width: calc(25% - 20px); }
+			.entry > .keyword { width: 100%; height: 30px; }
+			.entry:last-of-type { order: 1; }
+		}
+		@media all and (min-width: 900px) {
+			.highend > .store { font-size: 4rem; }
+			.highend * { font-size: 4rem; }
+
+			#banners { display: flex; }
+			.mainstream { width: calc(50% - 20px); order: 1; }
+ 			.mainstream > .store { font-size: 2.5rem; }
+			.mainstream * { font-size: 2.5rem; }
+			.entry { width: calc(25% - 20px); }
+			.entry > .keyword { width: 100%; height: 30px; }
+			.entry:last-of-type { order: 1; }
+ 			.entry > .store { font-size: 2.5rem; }
+			.entry * { font-size: 2.5rem; }
+		}
+
+		.neon { transition: all 0.5s; }
+		.neon:first-child { color: #fff; animation: neon6 1.5s ease-in-out infinite alternate; }
+
+		@keyframes neon1 {
+			from {
+				text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+			} to {
+				text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+			}
+		}
+
+		@keyframes neon2 {
+			from {
+				text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+			} to {
+				text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+			}
+		}
+
+		@keyframes neon3 {
+			from {
+				text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FFDD1B, 0 0 70px #FFDD1B, 0 0 80px #FFDD1B, 0 0 100px #FFDD1B, 0 0 150px #FFDD1B;
+			} to {
+				text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FFDD1B, 0 0 35px #FFDD1B, 0 0 40px #FFDD1B, 0 0 50px #FFDD1B, 0 0 75px #FFDD1B;
+			}
+		}
+
+		@keyframes neon4 {
+			from {
+				text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #B6FF00, 0 0 70px #B6FF00, 0 0 80px #B6FF00, 0 0 100px #B6FF00, 0 0 150px #B6FF00;
+			} to {
+				text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #B6FF00, 0 0 35px #B6FF00, 0 0 40px #B6FF00, 0 0 50px #B6FF00, 0 0 75px #B6FF00;
+			}
+		}
+
+		@keyframes neon5 {
+			from {
+				text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF9900, 0 0 70px #FF9900, 0 0 80px #FF9900, 0 0 100px #FF9900, 0 0 150px #FF9900;
+			} to {
+				text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF9900, 0 0 35px #FF9900, 0 0 40px #FF9900, 0 0 50px #FF9900, 0 0 75px #FF9900;
+			}
+		}
+
+		@keyframes neon6 {
+			from {
+				text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+			} to {
+				text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<a href="#"><img src="./lips.png"/></a>
+		<div>
+			<a href="#"><i class="fa fa-search"></i></a>
+			<a href="#"><i class="fa fa-heart"></i></a>
+			<a href="#"><i class="fa fa-calendar"></i></a>
+			<a href="#"><i class="fa fa-user"></i></a>
+		</div>
+	</header>
+	<section>
+		<footer><a href="#" class="btn btn-lg btn-block">더 보기</a></footer>
+	</section>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="RW.min.js"></script>
+	<script>
+
+		$(function(){
+			/*
+			* half: -1(left), 0(full), 1(right)
+			*/
+			var banners = [
+				{grade: 0, store: "10%", manager: "상무 싸이", tel: "02.345.6789", keyword: "아방궁으로 모십니다."}
+				, {grade: 1, store: "THE KING", manager: "실장 유재석", tel: "010.1234.5678", keyword: "국대급 미녀 대기중", half: 0}
+				, {grade: 2, store: "Time", manager: "실장 강호동", tel: "010.1111.2222", keyword: "", half: -1}
+				, {grade: 2, store: "Legend", manager: "실장 신동엽", tel: "010.4321.9876", keyword: "", half: 1}
+			];
+
+			var str = "";
+			for(var i = 0; i < banners.length; i++){
+				var banner = banners[i];
+				var grade = banner.grade;
+				var call = grade === 0 || grade === 1 ? "<div class='call'><div>" + banner.manager + "</div><div>" + banner.tel + "</div></div>" : "<div>" + banner.manager + "</div><div>" + banner.tel + "</div>";
+				var $banner ="<div class='banner " + (grade === 0 ? "highend neon" : grade === 1 ? "mainstream" : "entry" + (i > 1 && i === 2 ? " left" : " right")) + "'>"
+					+ "<div class='store'>" + banner.store + "</div>"
+					+ "<div class='keyword'>" + banner.keyword + "</div>"
+					+ call
+				+ "</div>";
+
+				if(i === 0){
+					$("footer").before($banner);
+				}else{
+					str += $banner;
+				}
+			}
+			$("footer").before("<div id='banners'>" + str + "</div>");
+
+			var datas = [
+				{image: "image/girl1.jpg", icon: "venus", count: "1,234K", heart: true, text: "향숙이 보러와. ^^"}
+				, {image: "image/girl2.jpg", icon: "venus", count: "1,234K", heart: true, text: "오빠 사랑해~"}
+				, {image: "image/girl3.jpg", icon: "venus", count: "1,234K", heart: true, text: "기다리고 있어요."}
+				, {image: "image/girl4.jpg", icon: "venus", count: "1,234K", heart: true, text: "나는야 백마"}
+				, {image: "image/girl5.jpg", icon: "venus", count: "1,234K", heart: true, text: "사랑해요."}
+				, {image: "image/girl6.jpg", icon: "venus", count: "1,234K", heart: true, text: "지금 벌렸어."}
+				, {image: "image/girl7.jpg", icon: "venus", count: "1,234K", heart: true, text: "나 물나와."}
+				, {image: "image/girl8.jpg", icon: "venus", count: "1,234K", heart: true, text: "오빠 언제와?"}
+			];
+
+			for(var i = 0; i < datas.length; i++){
+				var data = datas[i];
+				var image = "background: url(" + data.image + ") no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;";
+
+				$("footer").before("<article style='" + image + "'>"
+					+ "<div>"
+						+ "<i class='fa fa-" + data.icon + "'></i>"
+						+ "<i class='fa fa-thumbs-up'> " + data.count + "</i>"
+						+ "<a href='#'><i class='fa fa-heart-o'></i></a>"
+					+ "</div>"
+					+ "<div>" + data.text + "</div>"
+				+ "</article>");
+			}
+
+			RW.width(180, "section > article");
+			$(window).resize(function(){
+				RW.width(180, "section > article");
+			});
+		});
+	</script>
+</body>
+</html>
