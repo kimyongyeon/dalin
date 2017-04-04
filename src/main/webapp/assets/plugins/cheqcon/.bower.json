@@ -1,0 +1,30 @@
+{
+  "name": "cheqcon",
+  "description": "CHEQUER Font Icon",
+  "main": "style.css",
+  "authors": [
+    "Thomas Jang"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "CHEQUER"
+  ],
+  "homepage": "https://github.com/chequer-io/chequer-icon",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "version": "1.12.0",
+  "_release": "1.12.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.12.0",
+    "commit": "686c4aea5e3df79994e242b07b99bfe6294db98d"
+  },
+  "_source": "https://github.com/chequer-io/chequer-icon.git",
+  "_target": "^1.4.0",
+  "_originalSource": "cheqcon"
+}

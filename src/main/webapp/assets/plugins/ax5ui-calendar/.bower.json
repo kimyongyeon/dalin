@@ -1,0 +1,35 @@
+{
+  "name": "ax5ui-calendar",
+  "version": "1.4.7",
+  "authors": [
+    "ThomasJ <tom@axisj.com>"
+  ],
+  "description": "",
+  "main": "dist/ax5calendar.js",
+  "keywords": [
+    "bootstrap",
+    "jquery",
+    "ax5ui",
+    "plugin",
+    "bootstrap jQuery plugins",
+    "calendar",
+    "ax5ui-calendar",
+    "javascript ui"
+  ],
+  "dependencies": {
+    "jquery": "^1.11.0",
+    "ax5core": ">=1.3.0",
+    "bootstrap": "^3.3.6"
+  },
+  "license": "MIT",
+  "homepage": "ax5.io",
+  "_release": "1.4.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.4.7",
+    "commit": "edfe40b1bff09a0d5cec725f910ab97199e00e54"
+  },
+  "_source": "https://github.com/ax5ui/ax5ui-calendar.git",
+  "_target": ">=1.3.0",
+  "_originalSource": "ax5ui-calendar"
+}
